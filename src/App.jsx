@@ -1,6 +1,13 @@
+import ItemPage from "./components/itemPage/ItemPage";
+import NavBar from "./components/navBar/NavBar";
+
 const App = () => {
-  return <h1>Shopping Cart</h1>;
+  return (
+    <>
+      <NavBar />
+      <ItemPage />
+    </>
+  );
 };
 
 export default App;
-<h1>Shopping Cart</h1>;
