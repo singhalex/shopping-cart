@@ -1,12 +1,11 @@
-import ItemPage from "./components/itemPage/ItemPage";
+import { Outlet } from "react-router-dom";
 import NavBar from "./components/navBar/NavBar";
-import StorePage from "./components/storePage/StorePage";
 
 const App = () => {
   return (
     <>
       <NavBar />
-      <StorePage />
+      <Outlet />
     </>
   );
 };
