@@ -1,0 +1,39 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.homeContainer {
+  background-image: url(https://images.unsplash.com/photo-1542062700-9b61ccbc1696);
+  height: 90vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.homeContainer > span {
+  font-size: 4rem;
+  color: white;
+  background-color: black;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 70%;
+  padding-left: 10rem;
+  padding-right: 3rem;
+}
+
+.homeLink {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+}
+
+.attribution {
+  text-align: center;
+  padding: 0.5rem;
+}
