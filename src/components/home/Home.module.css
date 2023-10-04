@@ -19,7 +19,6 @@ body {
   font-size: 4rem;
   color: white;
   background-color: black;
-  padding: 1rem 2rem;
   position: absolute;
   top: 70%;
   padding-left: 10rem;
@@ -29,8 +28,14 @@ body {
 .homeLink {
   color: inherit;
   text-decoration: none;
+  display: flex;
   height: 100%;
   width: 100%;
+  padding: 1rem 2rem;
+}
+
+.homeLink:hover {
+  background-color: rgb(39, 39, 39);
 }
 
 .attribution {
