@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "./StorePage.module.css";
+import { useOutletContext } from "react-router-dom";
 
 const StorePage = () => {
   const [inventory, setInventory] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState({});
+  const { cart, setCart, setTotal } = useOutletContext();
 
   useEffect(() => {
     const inventoryFetch = async () => {
@@ -71,9 +71,7 @@ const StorePage = () => {
 
   return (
     <div id="store-grid">
-      <h1>Store Page</h1>
-      <h3>{total.numItems}</h3>
-      <h3>${total.grand}</h3>
+      {/* <h3>${total.grand}</h3> */}
       <div className={styles.container}>
         <div className={styles.productGrid}>
           {loading && <h1>Loading ...</h1>}
