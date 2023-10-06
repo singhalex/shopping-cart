@@ -6,7 +6,7 @@ const StorePage = () => {
   const [inventory, setInventory] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { cart, setCart, setTotal } = useOutletContext();
+  const { cart, setCart, updateTotal } = useOutletContext();
 
   useEffect(() => {
     const inventoryFetch = async () => {
@@ -57,16 +57,6 @@ const StorePage = () => {
     }
 
     updateTotal(newCart);
-  };
-
-  const updateTotal = (newCart) => {
-    let runningTotal = 0;
-    let numItems = 0;
-    newCart.forEach((item) => {
-      runningTotal += item.price * item.qty;
-      numItems += item.qty;
-    });
-    setTotal({ grand: Number(runningTotal).toFixed(2), numItems });
   };
 
   return (
