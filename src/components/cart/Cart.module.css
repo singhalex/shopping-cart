@@ -1,0 +1,52 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.itemCard {
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-block: 1rem;
+  justify-content: space-between;
+  box-shadow: 0.25rem 0.25rem 1rem rgb(0 0 0 / 0.1);
+}
+
+.itemInfo {
+  padding: 1rem;
+  width: 300px;
+}
+
+.itemCard > img {
+  max-height: 300px;
+  padding: 1rem;
+  object-fit: cover;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.plusMinusContainer {
+  display: flex;
+  align-items: center;
+}
+
+.buttonContainer button {
+  font-size: 2rem;
+  width: 3rem;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  background-color: #547aa5;
+  cursor: pointer;
+  margin-right: 0.25rem;
+}
+
+.buttonContainer button:hover {
+  background-color: #395370;
+}
