@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const App = () => {
   const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState({});
+  const [total, setTotal] = useState({ numItems: 0 });
 
   const updateTotal = (newCart) => {
     let runningTotal = 0;
