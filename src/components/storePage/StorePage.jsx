@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./StorePage.module.css";
 import { useOutletContext } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 
 const StorePage = () => {
   const [inventory, setInventory] = useState(null);
@@ -64,7 +65,18 @@ const StorePage = () => {
       {/* <h3>${total.grand}</h3> */}
       <div className={styles.container}>
         <div className={styles.productGrid}>
-          {loading && <h1>Loading ...</h1>}
+          {loading && (
+            <div className={styles.loader}>
+              <RotatingLines
+                strokeColor="#777"
+                strokeWidth="5"
+                animationDuration="1"
+                width="200"
+                visible={true}
+                ariaLabel="loading"
+              />
+            </div>
+          )}
           {inventory &&
             inventory.map((item) => (
               <div className={`${styles.card} ${styles.stacked}`} key={item.id}>
