@@ -1,12 +1,13 @@
 import { useOutletContext } from "react-router-dom";
 import styles from "./Cart.module.css";
+import CartCard from "./CartCard";
 
 const Cart = () => {
   const { cart, setCart, total, updateTotal } = useOutletContext();
 
   const decrementItem = (item) => {
     if (item.qty === 1) {
-      deteFromCart(item.id);
+      deleteFromCart(item.id);
       return;
     }
 
@@ -27,7 +28,6 @@ const Cart = () => {
   // Refactor and lift to App component
   const incrementItem = (item) => {
     const index = cart.findIndex((i) => i.id === item.id);
-    console.log(index);
 
     let newCart = cart.map((item, i) => {
       if (i === index) {
@@ -41,7 +41,7 @@ const Cart = () => {
     updateTotal(newCart);
   };
 
-  const deteFromCart = (itemId) => {
+  const deleteFromCart = (itemId) => {
     const newCart = cart.filter((item) => item.id !== itemId);
     setCart(newCart);
     updateTotal(newCart);
@@ -51,23 +51,13 @@ const Cart = () => {
     <div className={styles.container}>
       <h1>Cart Total: ${total.grand}</h1>
       {cart.map((item) => (
-        <div key={item.id} className={styles.itemCard}>
-          <img src={item.image} alt={item.description} />
-          <div className={styles.itemInfo}>
-            <h3>{item.title}</h3>
-            <h4>Qty: {item.qty}</h4>
-            <p>Subtotal: ${Number(item.qty * item.price).toFixed(2)}</p>
-            <div className={styles.buttonContainer}>
-              <div className={styles.plusMinusContainer}>
-                <button onClick={() => decrementItem(item)}>-</button>
-                <button onClick={() => incrementItem(item)}>+</button>
-              </div>
-              <button onClick={() => deteFromCart(item.id)}>
-                <img src="/trash.svg?url"></img>
-              </button>
-            </div>
-          </div>
-        </div>
+        <CartCard
+          item={item}
+          decrementItem={decrementItem}
+          incrementItem={incrementItem}
+          deleteFromCart={deleteFromCart}
+          key={item.id}
+        />
       ))}
     </div>
   );
