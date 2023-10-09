@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
+import PropTypes from "prop-types";
 
 const NavBar = ({ total }) => {
   return (
@@ -21,6 +22,11 @@ const NavBar = ({ total }) => {
       </ul>
     </nav>
   );
+};
+
+// Validate props
+NavBar.propTypes = {
+  total: PropTypes.object,
 };
 
 export default NavBar;
