@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./StorePage.module.css";
 import { useOutletContext } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
+import StoreCard from "./StoreCard";
 
 const StorePage = () => {
   const [inventory, setInventory] = useState(null);
@@ -62,7 +63,6 @@ const StorePage = () => {
 
   return (
     <div id="store-grid">
-      {/* <h3>${total.grand}</h3> */}
       <div className={styles.container}>
         <div className={styles.productGrid}>
           {loading && (
@@ -79,29 +79,7 @@ const StorePage = () => {
           )}
           {inventory &&
             inventory.map((item) => (
-              <div className={`${styles.card} ${styles.stacked}`} key={item.id}>
-                <img
-                  src={item.image}
-                  alt={item.description}
-                  className={styles.card__img}
-                />
-                <div className={styles.card__content}>
-                  <h2 className={styles.card__title}>{item.title}</h2>
-                  <div className={styles.card__buy}>
-                    <p className={styles.card__price}>
-                      ${Number(item.price).toFixed(2)}
-                    </p>
-                    <button
-                      className={styles.card__button}
-                      onClick={() => {
-                        handleClick(item);
-                      }}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <StoreCard key={item.id} item={item} handleClick={handleClick} />
             ))}
           {error && <h1>There was a network error: {error.message}</h1>}
         </div>
