@@ -1,4 +1,5 @@
 import styles from "./StorePage.module.css";
+import PropTypes from "prop-types";
 
 const StoreCard = ({ item, handleClick }) => {
   return (
@@ -24,6 +25,12 @@ const StoreCard = ({ item, handleClick }) => {
       </div>
     </div>
   );
+};
+
+// Validate props
+StoreCard.propTypes = {
+  item: PropTypes.object,
+  handleClick: PropTypes.function,
 };
 
 export default StoreCard;
