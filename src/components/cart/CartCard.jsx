@@ -1,4 +1,5 @@
 import styles from "./Cart.module.css";
+import PropTypes from "prop-types";
 
 const CartCard = ({ item, decrementItem, incrementItem, deleteFromCart }) => {
   return (
@@ -20,6 +21,14 @@ const CartCard = ({ item, decrementItem, incrementItem, deleteFromCart }) => {
       </div>
     </div>
   );
+};
+
+// Prop validation
+CartCard.propTypes = {
+  item: PropTypes.object,
+  decrementItem: PropTypes.function,
+  incrementItem: PropTypes.function,
+  deleteFromCart: PropTypes.function,
 };
 
 export default CartCard;
