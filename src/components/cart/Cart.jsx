@@ -49,16 +49,21 @@ const Cart = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Cart Total: ${total.grand}</h1>
-      {cart.map((item) => (
-        <CartCard
-          item={item}
-          decrementItem={decrementItem}
-          incrementItem={incrementItem}
-          deleteFromCart={deleteFromCart}
-          key={item.id}
-        />
-      ))}
+      {total.grand > 0 ? <h1>Cart Total: ${total.grand}</h1> : <div></div>}
+      {/* <h1>Cart Total: ${total.grand}</h1> */}
+      {cart.length > 0 ? (
+        cart.map((item) => (
+          <CartCard
+            item={item}
+            decrementItem={decrementItem}
+            incrementItem={incrementItem}
+            deleteFromCart={deleteFromCart}
+            key={item.id}
+          />
+        ))
+      ) : (
+        <h1>Cart is empty</h1>
+      )}
     </div>
   );
 };
