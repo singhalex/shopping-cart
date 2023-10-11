@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 import styles from "./Cart.module.css";
 import CartCard from "./CartCard";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Cart = () => {
   const { cart, setCart, total, updateTotal } = useOutletContext();
@@ -48,23 +49,26 @@ const Cart = () => {
   };
 
   return (
-    <div className={styles.container}>
-      {total.grand > 0 ? <h1>Cart Total: ${total.grand}</h1> : <div></div>}
-      {/* <h1>Cart Total: ${total.grand}</h1> */}
-      {cart.length > 0 ? (
-        cart.map((item) => (
-          <CartCard
-            item={item}
-            decrementItem={decrementItem}
-            incrementItem={incrementItem}
-            deleteFromCart={deleteFromCart}
-            key={item.id}
-          />
-        ))
-      ) : (
-        <h1>Cart is empty</h1>
-      )}
-    </div>
+    <>
+      <div className={styles.container}>
+        {total.grand > 0 ? <h1>Cart Total: ${total.grand}</h1> : <div></div>}
+        {/* <h1>Cart Total: ${total.grand}</h1> */}
+        {cart.length > 0 ? (
+          cart.map((item) => (
+            <CartCard
+              item={item}
+              decrementItem={decrementItem}
+              incrementItem={incrementItem}
+              deleteFromCart={deleteFromCart}
+              key={item.id}
+            />
+          ))
+        ) : (
+          <h1>Cart is empty</h1>
+        )}
+      </div>
+      <ScrollButton />
+    </>
   );
 };
 

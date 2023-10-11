@@ -3,6 +3,7 @@ import styles from "./StorePage.module.css";
 import { useOutletContext } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
 import StoreCard from "./StoreCard";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 const StorePage = () => {
   const [inventory, setInventory] = useState(null);
@@ -62,29 +63,36 @@ const StorePage = () => {
   };
 
   return (
-    <div id="store-grid">
-      <div className={styles.container}>
-        <div className={styles.productGrid}>
-          {loading && (
-            <div className={styles.loader}>
-              <RotatingLines
-                strokeColor="#777"
-                strokeWidth="5"
-                animationDuration="1"
-                width="200"
-                visible={true}
-                ariaLabel="loading"
-              />
-            </div>
-          )}
-          {inventory &&
-            inventory.map((item) => (
-              <StoreCard key={item.id} item={item} handleClick={handleClick} />
-            ))}
-          {error && <h1>There was a network error: {error.message}</h1>}
+    <>
+      <div id="store-grid">
+        <div className={styles.container}>
+          <div className={styles.productGrid}>
+            {loading && (
+              <div className={styles.loader}>
+                <RotatingLines
+                  strokeColor="#777"
+                  strokeWidth="5"
+                  animationDuration="1"
+                  width="200"
+                  visible={true}
+                  ariaLabel="loading"
+                />
+              </div>
+            )}
+            {inventory &&
+              inventory.map((item) => (
+                <StoreCard
+                  key={item.id}
+                  item={item}
+                  handleClick={handleClick}
+                />
+              ))}
+            {error && <h1>There was a network error: {error.message}</h1>}
+          </div>
         </div>
       </div>
-    </div>
+      <ScrollButton />
+    </>
   );
 };
 

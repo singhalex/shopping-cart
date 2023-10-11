@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         </span>
       </div>
       <p className={styles.attribution}>Photo by Joshua Chun</p>
+      <ScrollButton />
     </>
   );
 };
