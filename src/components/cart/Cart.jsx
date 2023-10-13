@@ -40,7 +40,6 @@ const Cart = () => {
     });
     setCart(newCart);
     updateTotal(newCart);
-    console.log(typeof total.grand);
   };
 
   const deleteFromCart = (itemId) => {
