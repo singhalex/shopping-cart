@@ -7,7 +7,6 @@ const NavBar = ({ total }) => {
   const [showNav, setShowNav] = useState(false);
 
   const handleShowNavBar = () => {
-    console.log("click");
     setShowNav(!showNav);
   };
 
