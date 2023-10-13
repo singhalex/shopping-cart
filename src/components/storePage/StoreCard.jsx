@@ -30,7 +30,7 @@ const StoreCard = ({ item, handleClick }) => {
 // Validate props
 StoreCard.propTypes = {
   item: PropTypes.object,
-  handleClick: PropTypes.function,
+  handleClick: PropTypes.func,
 };
 
 export default StoreCard;

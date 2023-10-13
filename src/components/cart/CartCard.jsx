@@ -26,9 +26,9 @@ const CartCard = ({ item, decrementItem, incrementItem, deleteFromCart }) => {
 // Prop validation
 CartCard.propTypes = {
   item: PropTypes.object,
-  decrementItem: PropTypes.function,
-  incrementItem: PropTypes.function,
-  deleteFromCart: PropTypes.function,
+  decrementItem: PropTypes.func,
+  incrementItem: PropTypes.func,
+  deleteFromCart: PropTypes.func,
 };
 
 export default CartCard;
