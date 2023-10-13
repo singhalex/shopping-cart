@@ -1,38 +1,118 @@
+.cart {
+  display: flex;
+}
+
 .cartIcon {
   height: 1.75rem;
 }
 
-.nav {
-  background-color: #333;
-  color: white;
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 0 1.5rem;
-}
-
-.nav .siteTitle {
-  font-size: 3rem;
-}
-
-.nav ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-.nav a {
-  color: inherit;
-  text-decoration: none;
-  height: 100%;
-  display: flex;
   align-items: center;
-  padding: 0.25rem;
+  height: 100%;
 }
 
-.nav li:hover {
-  background-color: #777;
+.navbar {
+  height: 70px;
+  background-color: #333;
+  position: relative;
+}
+
+.logo {
+  margin-left: 2rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.navElements ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.navElements ul li {
+  margin-right: 3rem;
+}
+
+.navElements ul a {
+  font-size: 1.25rem;
+  color: white;
+  text-decoration: none;
+}
+
+.navElements ul a.active {
+  border: 1px solid red;
+  color: blue;
+  position: relative;
+}
+
+.menuIcon {
+  display: none;
+}
+
+.menuIcon span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background: #cdcdcd;
+  border-radius: 3px;
+}
+
+@media (max-width: 614px) {
+  .menuIcon {
+    display: block;
+    cursor: pointer;
+  }
+  .menuIcon span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #cdcdcd;
+    border-radius: 3px;
+  }
+
+  .menuIcon span:first-child {
+    transform-origin: 0% 0%;
+  }
+
+  .menuIcon span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+
+  .navElements {
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 0px;
+    background-color: #333;
+    height: calc(100vh);
+    transition: all 0.25s ease-in;
+    overflow: hidden;
+    z-index: 99;
+  }
+
+  .navElements.active {
+    width: 100%;
+  }
+
+  .navElements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navElements ul li {
+    margin-right: unset;
+    margin-top: 2rem;
+  }
 }
