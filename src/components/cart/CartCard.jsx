@@ -8,7 +8,12 @@ const CartCard = ({ item, decrementItem, incrementItem, deleteFromCart }) => {
       <div className={styles.itemInfo}>
         <h3>{item.title}</h3>
         <h4>Qty: {item.qty}</h4>
-        <p>Subtotal: ${Number(item.qty * item.price).toFixed(2)}</p>
+        <p>{`Subtotal: ${Number(
+          Number(item.qty * item.price).toFixed(2)
+        ).toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })}`}</p>
         <div className={styles.buttonContainer}>
           <div className={styles.plusMinusContainer}>
             <button onClick={() => decrementItem(item)}>-</button>

@@ -40,6 +40,7 @@ const Cart = () => {
     });
     setCart(newCart);
     updateTotal(newCart);
+    console.log(typeof total.grand);
   };
 
   const deleteFromCart = (itemId) => {
@@ -51,7 +52,16 @@ const Cart = () => {
   return (
     <>
       <div className={styles.container}>
-        {total.grand > 0 ? <h1>Cart Total: ${total.grand}</h1> : <div></div>}
+        {total.grand > 0 ? (
+          <h1>
+            {`Cart Total: ${Number(total.grand).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}`}
+          </h1>
+        ) : (
+          <div></div>
+        )}
         {/* <h1>Cart Total: ${total.grand}</h1> */}
         {cart.length > 0 ? (
           cart.map((item) => (
