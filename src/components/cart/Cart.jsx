@@ -2,16 +2,11 @@ import { useOutletContext } from "react-router-dom";
 import styles from "./Cart.module.css";
 import CartCard from "./CartCard";
 import ScrollButton from "../ScrollButton/ScrollButton";
+import OrderSummary from "./OrderSummary";
 
 const Cart = () => {
   const { cart, setCart, total, updateTotal } = useOutletContext();
   const shipping = 4.95;
-
-  const formatCurrency = (number) =>
-    Number(number).toLocaleString("en-Us", {
-      style: "currency",
-      currency: "USD",
-    });
 
   const decrementItem = (item) => {
     if (item.qty === 1) {
@@ -75,30 +70,7 @@ const Cart = () => {
             <h3>Your cart is empty.</h3>
           )}
         </div>
-        <div className={styles.summaryContainer}>
-          <h2>Order Summary</h2>
-          <hr />
-          <div>
-            <span>Subtotal</span>
-            <span>
-              {cart.length > 0 ? formatCurrency(Number(total.grand)) : "$0.00"}
-            </span>
-          </div>
-          <div>
-            <span>Shipping</span>
-            <span>{cart.length > 0 ? formatCurrency(shipping) : "$0.00"}</span>
-          </div>
-          <hr />
-          <div>
-            <span className={styles.grandTotal}>Total</span>
-            <span className={styles.grandTotal}>
-              {cart.length > 0
-                ? formatCurrency(Number(total.grand) + shipping)
-                : "$0.00"}
-            </span>
-          </div>
-          <button className={styles.checkout}>Checkout</button>
-        </div>
+        <OrderSummary total={total} shipping={shipping} />
       </div>
 
       <ScrollButton />
