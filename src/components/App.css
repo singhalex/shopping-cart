@@ -88,3 +88,10 @@ ul a.active::after {
   height: 2px;
   background-color: white;
 }
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+}
