@@ -15,18 +15,18 @@ const OrderSummary = ({ total, shipping }) => {
       <div>
         <span>Subtotal</span>
         <span>
-          {total.grand ? formatCurrency(Number(total.grand)) : "$0.00"}
+          {total.grand > 0 ? formatCurrency(Number(total.grand)) : "$0.00"}
         </span>
       </div>
       <div>
         <span>Shipping</span>
-        <span>{total.grand ? formatCurrency(shipping) : "$0.00"}</span>
+        <span>{total.grand > 0 ? formatCurrency(shipping) : "$0.00"}</span>
       </div>
       <hr />
       <div>
         <span className={styles.grandTotal}>Total</span>
         <span className={styles.grandTotal}>
-          {total.grand
+          {total.grand > 0
             ? formatCurrency(Number(total.grand) + shipping)
             : "$0.00"}
         </span>
