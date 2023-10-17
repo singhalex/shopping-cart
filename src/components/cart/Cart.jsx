@@ -5,6 +5,13 @@ import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Cart = () => {
   const { cart, setCart, total, updateTotal } = useOutletContext();
+  const shipping = 4.95;
+
+  const formatCurrency = (number) =>
+    Number(number).toLocaleString("en-Us", {
+      style: "currency",
+      currency: "USD",
+    });
 
   const decrementItem = (item) => {
     if (item.qty === 1) {
@@ -51,31 +58,49 @@ const Cart = () => {
   return (
     <>
       <div className={styles.container}>
-        {total.grand > 0 ? (
-          <h1>
-            {`Cart Total: ${Number(total.grand).toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}`}
-          </h1>
-        ) : (
-          <div></div>
-        )}
-        {/* <h1>Cart Total: ${total.grand}</h1> */}
-        {cart.length > 0 ? (
-          cart.map((item) => (
-            <CartCard
-              item={item}
-              decrementItem={decrementItem}
-              incrementItem={incrementItem}
-              deleteFromCart={deleteFromCart}
-              key={item.id}
-            />
-          ))
-        ) : (
-          <h1>Cart is empty</h1>
-        )}
+        <div className={styles.cartItemsContainer}>
+          <h2>My Cart</h2>
+          <hr></hr>
+          {cart.length > 0 ? (
+            cart.map((item) => (
+              <CartCard
+                item={item}
+                decrementItem={decrementItem}
+                incrementItem={incrementItem}
+                deleteFromCart={deleteFromCart}
+                key={item.id}
+              />
+            ))
+          ) : (
+            <h3>Your cart is empty.</h3>
+          )}
+        </div>
+        <div className={styles.summaryContainer}>
+          <h2>Order Summary</h2>
+          <hr />
+          <div>
+            <span>Subtotal</span>
+            <span>
+              {cart.length > 0 ? formatCurrency(Number(total.grand)) : "$0.00"}
+            </span>
+          </div>
+          <div>
+            <span>Shipping</span>
+            <span>{cart.length > 0 ? formatCurrency(shipping) : "$0.00"}</span>
+          </div>
+          <hr />
+          <div>
+            <span className={styles.grandTotal}>Total</span>
+            <span className={styles.grandTotal}>
+              {cart.length > 0
+                ? formatCurrency(Number(total.grand) + shipping)
+                : "$0.00"}
+            </span>
+          </div>
+          <button className={styles.checkout}>Checkout</button>
+        </div>
       </div>
+
       <ScrollButton />
     </>
   );
