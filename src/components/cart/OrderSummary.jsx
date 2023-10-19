@@ -2,8 +2,10 @@ import styles from "./Cart.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const OrderSummary = ({ total, shipping }) => {
+const OrderSummary = ({ total, shipping, taxRate }) => {
   const [checkout, setCheckout] = useState(false);
+
+  const tax = total.grand * taxRate;
 
   const formatCurrency = (number) =>
     Number(number).toLocaleString("en-Us", {
@@ -29,12 +31,16 @@ const OrderSummary = ({ total, shipping }) => {
         <span>Shipping</span>
         <span>{total.grand > 0 ? formatCurrency(shipping) : "$0.00"}</span>
       </div>
+      <div>
+        <span>Tax</span>
+        <span>{total.grand > 0 ? formatCurrency(tax) : "$0.00"}</span>
+      </div>
       <hr />
       <div>
         <span className={styles.grandTotal}>Total</span>
         <span className={styles.grandTotal}>
           {total.grand > 0
-            ? formatCurrency(Number(total.grand) + shipping)
+            ? formatCurrency(Number(total.grand) + shipping + tax)
             : "$0.00"}
         </span>
       </div>
@@ -50,6 +56,7 @@ const OrderSummary = ({ total, shipping }) => {
 OrderSummary.propTypes = {
   total: PropTypes.object,
   shipping: PropTypes.number,
+  taxRate: PropTypes.number,
 };
 
 export default OrderSummary;

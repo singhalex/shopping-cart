@@ -7,6 +7,7 @@ import OrderSummary from "./OrderSummary";
 const Cart = () => {
   const { cart, setCart, total, updateTotal } = useOutletContext();
   const shipping = 4.95;
+  const taxRate = 0.1;
 
   const decrementItem = (item) => {
     if (item.qty === 1) {
@@ -70,7 +71,7 @@ const Cart = () => {
             <h3>Your cart is empty.</h3>
           )}
         </div>
-        <OrderSummary total={total} shipping={shipping} />
+        <OrderSummary total={total} shipping={shipping} taxRate={taxRate} />
       </div>
 
       <ScrollButton />
