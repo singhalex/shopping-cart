@@ -1,12 +1,19 @@
 import styles from "./Cart.module.css";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const OrderSummary = ({ total, shipping }) => {
+  const [checkout, setCheckout] = useState(false);
+
   const formatCurrency = (number) =>
     Number(number).toLocaleString("en-Us", {
       style: "currency",
       currency: "USD",
     });
+
+  const handleCheckout = () => {
+    setCheckout(!checkout);
+  };
 
   return (
     <div className={styles.summaryContainer}>
@@ -31,7 +38,10 @@ const OrderSummary = ({ total, shipping }) => {
             : "$0.00"}
         </span>
       </div>
-      <button className={styles.checkout}>Checkout</button>
+      <button className={styles.checkout} onClick={handleCheckout}>
+        Checkout
+      </button>
+      {checkout && <p>This is not a real store. You cannot buy anything.</p>}
     </div>
   );
 };
