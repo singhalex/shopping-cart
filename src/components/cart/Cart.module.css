@@ -49,6 +49,7 @@
 
 .itemCard > img {
   max-height: 200px;
+  max-width: 150px;
   padding: 1rem;
   object-fit: cover;
 }
