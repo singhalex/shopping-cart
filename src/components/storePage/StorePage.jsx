@@ -35,7 +35,7 @@ const StorePage = () => {
     inventoryFetch();
   }, []);
 
-  const handleClick = (item) => {
+  const addToCart = (item) => {
     item.qty = 1;
     const index = cart.findIndex((i) => i.id === item.id);
 
@@ -81,11 +81,7 @@ const StorePage = () => {
             )}
             {inventory &&
               inventory.map((item) => (
-                <StoreCard
-                  key={item.id}
-                  item={item}
-                  handleClick={handleClick}
-                />
+                <StoreCard key={item.id} item={item} addToCart={addToCart} />
               ))}
             {error && <h1>There was a network error: {error.message}</h1>}
           </div>
