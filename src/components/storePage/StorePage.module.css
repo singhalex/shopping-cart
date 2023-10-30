@@ -26,6 +26,10 @@
 .card {
   aspect-ratio: 1/1.5;
 }
+.card a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .card__content {
   border-radius: 0.25rem;
