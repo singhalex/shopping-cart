@@ -1,47 +1,30 @@
-import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import styles from "./ItemPage.module.css";
+import { useOutletContext } from "react-router-dom";
 
 const ItemPage = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const itemFetch = async () => {
-      try {
-        const res = await fetch("https://fakestoreapi.com/products/1");
-
-        if (!res.ok) {
-          throw new Error(`This is an HTTP error: The status is ${res.status}`);
-        }
-        const item = await res.json();
-        console.log(item);
-        setData(item);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    itemFetch();
-  }, []);
+  const { itemID } = useParams();
+  const { addToCart } = useOutletContext();
+  const { state } = useLocation();
+  const { item } = state;
 
   return (
-    <div className="item-page">
-      {loading && <h1>Loading... </h1>}
-      {data && (
-        <>
-          <img src={data.image} alt={data.title} />
-          <div className="item-detail">
-            <h1>{data.title}</h1>
-            <p>{data.description}</p>
-            <div>${data.price}</div>
-            <button>Add to Cart</button>
-          </div>
-        </>
-      )}
+    <div className={styles.item__container}>
+      <img src={item.image} alt={item.title} />
+      <div className={styles.item__description}>
+        <h1>{item.title}</h1>
+        <p>{item.rating.count} ratings</p>
+        <p>{item.rating.rate} out of 5</p>
+        <p>{item.description}</p>
+        <p>${Number(item.price).toFixed(2)}</p>
+        <button
+          onClick={() => {
+            addToCart(item);
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 };

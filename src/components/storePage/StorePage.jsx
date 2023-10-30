@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import styles from "./StorePage.module.css";
-import { useOutletContext } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
 import StoreCard from "./StoreCard";
 import ScrollButton from "../ScrollButton/ScrollButton";
@@ -9,7 +8,6 @@ const StorePage = () => {
   const [inventory, setInventory] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { cart, setCart, updateTotal } = useOutletContext();
 
   useEffect(() => {
     const inventoryFetch = async () => {
@@ -35,33 +33,6 @@ const StorePage = () => {
     inventoryFetch();
   }, []);
 
-  const addToCart = (item) => {
-    item.qty = 1;
-    const index = cart.findIndex((i) => i.id === item.id);
-
-    updateCart(item, index);
-  };
-
-  const updateCart = (item, index) => {
-    let newCart;
-    if (index < 0) {
-      newCart = [...cart, item];
-      setCart(newCart);
-    } else {
-      newCart = cart.map((item, i) => {
-        if (i === index) {
-          const increment = item.qty + 1;
-          return { ...item, qty: increment };
-        } else {
-          return item;
-        }
-      });
-      setCart(newCart);
-    }
-
-    updateTotal(newCart);
-  };
-
   return (
     <>
       <div id="store-grid">
@@ -80,9 +51,7 @@ const StorePage = () => {
               </div>
             )}
             {inventory &&
-              inventory.map((item) => (
-                <StoreCard key={item.id} item={item} addToCart={addToCart} />
-              ))}
+              inventory.map((item) => <StoreCard key={item.id} item={item} />)}
             {error && <h1>There was a network error: {error.message}</h1>}
           </div>
         </div>
