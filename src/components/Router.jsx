@@ -4,6 +4,7 @@ import Home from "./home/Home";
 import StorePage from "./storePage/StorePage";
 import Cart from "./cart/Cart";
 import ErrorPage from "./errorPage/ErrorPage";
+import ItemPage from "./itemPage/ItemPage";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const Router = () => {
         { path: "/home", element: <Home /> },
         { path: "/shop", element: <StorePage /> },
         { path: "/cart", element: <Cart /> },
+        { path: "/shop/:itemID", element: <ItemPage /> },
       ],
       errorElement: <ErrorPage />,
     },
