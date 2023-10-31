@@ -8,7 +8,7 @@ const StoreCard = ({ item }) => {
 
   return (
     <div className={`${styles.card} ${styles.stacked}`}>
-      <Link to={`/shop/${item.id}`} state={{ item }}>
+      <Link to={`/shop/${item.id}`}>
         <img
           src={item.image}
           alt={item.description}
@@ -16,7 +16,7 @@ const StoreCard = ({ item }) => {
         />
       </Link>
       <div className={styles.card__content}>
-        <Link to={`/shop/${item.id}`} state={{ item }}>
+        <Link to={`/shop/${item.id}`}>
           <h2 className={styles.card__title}>{item.title}</h2>
         </Link>
         <div className={styles.card__buy}>
