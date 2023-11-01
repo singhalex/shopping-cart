@@ -10,7 +10,7 @@
 }
 .item__imageContainer {
   flex-grow: 2;
-  width: clamp(350px, 40vw, 600px);
+  width: clamp(350px, 40vw, 550px);
   height: auto;
 }
 
